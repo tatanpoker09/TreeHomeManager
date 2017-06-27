@@ -1,0 +1,26 @@
+#kivy 1.9.2
+#import Server ServerSelection.Server
+
+
+<Server>
+    size_hint: (1,0.15)
+    pos_hint: {'center_x':.5, 'center_y': 0.9}
+    canvas.before:
+        Color:
+            rgba: 0, 1, 0, .2
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+<ServerSelection>
+    ScrollView:
+        BoxLayout:
+            columns: 1
+            spacing: 20
+            padding: ["290sp","0sp"]
+
+            Server:
+                name: "Tatan"
+                Button:
+                    text: "Callao valle"
