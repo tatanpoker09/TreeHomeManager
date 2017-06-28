@@ -1,9 +1,8 @@
-from kivy.input.providers.mouse import Color
-from kivy.uix.button import Button
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen
 
 import kivy
-from kivy.uix.widget import Widget
 
 from kivy.graphics.vertex_instructions import Rectangle
 
@@ -14,12 +13,24 @@ class ServerSelection(Screen):
     def __init__(self, **kwargs):
         super(ServerSelection, self).__init__(**kwargs)
 
+    def addServer(self):
+        popup = AddServerPopup()
+        popup.open()
+
 
 # Represents a server with:
 # name,ip,status.
-class Server(Widget):
-
+class Server(FloatLayout):
     def __init__(self, **kwargs):
         super(Server, self).__init__(**kwargs)
-        if(kwargs.has_key("name")):
-            self.name = kwargs["name"]
+
+
+class AddServerPopup(Popup):
+
+    def pingServer(self):
+        print("Ping")
+        pass
+
+    def createServer(self):
+        print("Pong")
+        pass

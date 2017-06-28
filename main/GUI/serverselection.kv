@@ -1,26 +1,93 @@
 #kivy 1.9.2
 #import Server ServerSelection.Server
-
+#import Window kivy.core.window
+<AddServerPopup>
+    size_hint:(0.5,0.5)
+    title: "Add a server: "
+    FloatLayout:
+        Label:
+            text: "Server Name"
+            pos_hint: {"x": 0, 'y':0.9}
+            text_size: self.size
+            size_hint: (0.3,0.15)
+        TextInput:
+            text: "My Tree Server"
+            pos_hint: {"x": 0, 'y':0.8}
+            multiline: False
+            size_hint: (0.7,0.1)
+        Label:
+            text: "Server Address"
+            pos_hint: {"x": 0, 'y':0.6}
+            text_size: self.size
+            size_hint: (0.3,0.15)
+        TextInput:
+            text: ""
+            pos_hint: {"x": 0, 'y':0.5}
+            multiline: False
+            size_hint: (0.7,0.1)
+        Button:
+            text: "Ping"
+            pos_hint: {"x": 0.75, 'y':0.5}
+            size_hint: (0.2,0.1)
+            on_press: root.pingServer()
+        Button:
+            text: "Done"
+            pos_hint: {"x": 0.75, 'y':0.05}
+            size_hint: (0.2,0.2)
+            on_press: root.createServer()
+        Button:
+            text: "Cancel"
+            pos_hint: {"x": 0.5, 'y':0.05}
+            size_hint: (0.2,0.2)
+            on_press: root.dismiss()
 
 <Server>
     size_hint: (1,0.15)
-    pos_hint: {'center_x':.5, 'center_y': 0.9}
+    pos_hint: {'center_x':.5}
     canvas.before:
         Color:
-            rgba: 0, 1, 0, .2
+            rgba: 0, 1, 0, 1
         Rectangle:
             pos: self.pos
             size: self.size
+    Button:
+        text: "Working"
 
 
 <ServerSelection>
-    ScrollView:
-        BoxLayout:
-            columns: 1
-            spacing: 20
-            padding: ["290sp","0sp"]
+	FloatLayout:
+		size_hint: 1, 0.9
+		pos_hint: {"x": 0, 'y':0.1}
+		id: body
+		canvas.before:
+			Color:
+				rgba: 1,0,1,1
+			Rectangle:
+				pos: self.pos
+				size: self.size
 
-            Server:
-                name: "Tatan"
-                Button:
-                    text: "Callao valle"
+		ScrollView:
+			viewport_size: body.size
+			pos_hint: {"x": 0, 'y':0}
+			GridLayout:
+				padding: 20
+				cols: 1
+				id: scrollbody
+				spacing:10
+				size_hint: 1, None
+				height: self.minimum_height
+	FloatLayout:
+		id: foot
+		size_hint: (1.0,0.1)
+		pos_hint: {"x": 0, 'y':0}
+		canvas:
+			Color:
+				rgba: 1,1,0,1
+			Rectangle:
+				pos: self.pos
+				size: self.size
+		Button:
+			text: "Add Server"
+			pos_hint: {"x": 0.8, 'y':0}
+			size_hint: (0.2, 1.0)
+			on_release: root.addServer()
