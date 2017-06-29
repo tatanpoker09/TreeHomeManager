@@ -1,3 +1,5 @@
+import socket
+
 from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
@@ -47,7 +49,7 @@ class Server(FloatLayout):
         self.size_hint = (0.4,None)
         self.size = (500, 100)
 
-        self.connect_button = Button(size_hint= (0.1,1), pos_hint = {"x": 0, 'y':0}, text="Connect")
+        self.connect_button = Button(size_hint= (0.1,1), pos_hint = {"x": 0, 'y':0}, text="Connect", on_press=lambda connect: self.connect())
         self.add_widget(self.connect_button)
 
         self.name_label = Label(size_hint = (0.3, 1.0), pos_hint = {"x": 0.2, 'y':0.3}, font_size=30, halign="left", valign="middle", text=self.name)
@@ -63,6 +65,19 @@ class Server(FloatLayout):
         self.add_widget(self.delete_button)
 
         self.name_label.bind(size=self.name_label.setter("text_size"))
+
+    def connect(self):
+        # create an INET, STREAMing socket
+        s = socket.socket(
+            socket.AF_INET, socket.SOCK_STREAM)
+        # now connect to the web server on port 80
+        # - the normal http port
+        s.connect((self.ip, 7727))
+        while 1:
+            data = s.recv(1024)
+            if not data: break
+            print(str(data))
+        s.close()
 
 class AddServerPopup(Popup):
     #cause fuck logic right?
