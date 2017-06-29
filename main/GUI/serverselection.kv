@@ -11,6 +11,7 @@
             text_size: self.size
             size_hint: (0.3,0.15)
         TextInput:
+            id: servername
             text: "My Tree Server"
             pos_hint: {"x": 0, 'y':0.8}
             multiline: False
@@ -21,6 +22,7 @@
             text_size: self.size
             size_hint: (0.3,0.15)
         TextInput:
+            id: serverip
             text: ""
             pos_hint: {"x": 0, 'y':0.5}
             multiline: False
@@ -29,12 +31,12 @@
             text: "Ping"
             pos_hint: {"x": 0.75, 'y':0.5}
             size_hint: (0.2,0.1)
-            on_press: root.pingServer()
+            on_press: root.ping_server()
         Button:
             text: "Done"
             pos_hint: {"x": 0.75, 'y':0.05}
             size_hint: (0.2,0.2)
-            on_press: root.createServer()
+            on_press: root.create_server()
         Button:
             text: "Cancel"
             pos_hint: {"x": 0.5, 'y':0.05}
@@ -42,16 +44,12 @@
             on_press: root.dismiss()
 
 <Server>
-    size_hint: (1,0.15)
-    pos_hint: {'center_x':.5}
     canvas.before:
-        Color:
-            rgba: 0, 1, 0, 1
-        Rectangle:
-            pos: self.pos
-            size: self.size
-    Button:
-        text: "Working"
+		Color:
+			rgba: 0,0,1,1
+		Rectangle:
+			pos: self.pos
+			size: self.size
 
 
 <ServerSelection>
@@ -70,7 +68,7 @@
 			viewport_size: body.size
 			pos_hint: {"x": 0, 'y':0}
 			GridLayout:
-				padding: 20
+				padding: 400,40
 				cols: 1
 				id: scrollbody
 				spacing:10
@@ -90,4 +88,4 @@
 			text: "Add Server"
 			pos_hint: {"x": 0.8, 'y':0}
 			size_hint: (0.2, 1.0)
-			on_release: root.addServer()
+			on_release: root.create_server()
