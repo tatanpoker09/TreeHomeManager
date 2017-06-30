@@ -3,27 +3,14 @@
 This README would normally document whatever steps are necessary to get your application up and running.
 
 ### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Client side of the Tree Home Manager project. Uses kivy framework to boost its capabilities GUI wise.
+IoT Software to be truly the owner your house deserves.
 
 ### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+There's currently no working build.
 
 ### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
+Code Reviewers needed.
 
 ### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+tatanpoker09 is the currently the only person working in this project.
