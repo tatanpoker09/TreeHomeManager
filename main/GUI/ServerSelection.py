@@ -1,14 +1,10 @@
-import socket
-
 from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen
-
+from main.GUI.ServerListener import ThreadedClient
 import kivy
-
-from kivy.graphics.vertex_instructions import Rectangle
 
 kivy.require('1.9.2')  # uses current kivy version.s
 
@@ -67,17 +63,9 @@ class Server(FloatLayout):
         self.name_label.bind(size=self.name_label.setter("text_size"))
 
     def connect(self):
-        # create an INET, STREAMing socket
-        s = socket.socket(
-            socket.AF_INET, socket.SOCK_STREAM)
-        # now connect to the web server on port 80
-        # - the normal http port
-        s.connect((self.ip, 7727))
-        while 1:
-            data = s.recv(1024)
-            if not data: break
-            print(str(data))
-        s.close()
+        port = 7727
+        client = ThreadedClient(self.ip, port)
+        client.start()
 
 class AddServerPopup(Popup):
     #cause fuck logic right?
@@ -86,7 +74,6 @@ class AddServerPopup(Popup):
 
     def ping_server(self):
         print("Ping")
-        pass
 
     def create_server(self):
         name = self.ids.servername.text

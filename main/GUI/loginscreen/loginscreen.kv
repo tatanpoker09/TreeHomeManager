@@ -1,0 +1,22 @@
+<LoginScreen>
+    AnchorLayout:
+        anchor_x: "center"
+        anchor_y: "center"
+        GridLayout:
+            rows: 2
+            cols: 2
+            padding: 10
+            spacing: 10
+            Label:
+                text: "User Name"
+            TextInput:
+                id: username
+            Label:
+                text: "Password"
+            TextInput:
+                id: password
+                password: True
+        Button:
+            text: "Login"
+        Button:
+            text: "Disconnect"
