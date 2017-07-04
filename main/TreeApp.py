@@ -2,7 +2,7 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 
-from GUI.ServerSelection import ServerSelection
+from main.GUI.ServerSelection import ServerSelection
 
 Builder.load_file("GUI/serverselection.kv")
 
