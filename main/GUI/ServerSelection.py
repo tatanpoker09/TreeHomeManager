@@ -1,3 +1,4 @@
+from kivy.app import App
 from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
@@ -5,6 +6,8 @@ from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen
 from main.GUI.ServerListener import ThreadedClient
 import kivy
+
+from main.GUI.loginscreen.LoginScreen import LoginScreen
 
 kivy.require('1.9.2')  # uses current kivy version.s
 
@@ -63,9 +66,8 @@ class Server(FloatLayout):
         self.name_label.bind(size=self.name_label.setter("text_size"))
 
     def connect(self):
-        port = 7727
-        client = ThreadedClient(self.ip, port)
-        client.start()
+        ipdata = self.ip.split(":")
+        App.get_running_app().sm.switch_to(LoginScreen(ipdata[0], ipdata[1], name="LoginScreen"))
 
 class AddServerPopup(Popup):
     #cause fuck logic right?

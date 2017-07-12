@@ -1,0 +1,11 @@
+#kivy 1.9.2
+
+<MainMenuScreen>:
+	GridLayout:
+		id: menulayout
+		rows:2
+		spacing: 20
+		padding: 20
+		Button:
+			text: "Exit"
+			on_release: app.stop()

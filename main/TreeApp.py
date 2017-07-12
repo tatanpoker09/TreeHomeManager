@@ -5,6 +5,9 @@ from kivy.uix.screenmanager import ScreenManager
 from main.GUI.ServerSelection import ServerSelection
 
 Builder.load_file("GUI/serverselection.kv")
+Builder.load_file("GUI/loginscreen/loginscreen.kv")
+Builder.load_file("GUI/mainmenu/menu_screen.kv")
+Builder.load_file("GUI/loading/loading_screen.kv")
 
 
 class TreeApp(App):

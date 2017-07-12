@@ -2,21 +2,40 @@
     AnchorLayout:
         anchor_x: "center"
         anchor_y: "center"
-        GridLayout:
-            rows: 2
-            cols: 2
-            padding: 10
-            spacing: 10
+
+        RelativeLayout:
+		    pos_hint: {"x": 0, 'y':0}
+            canvas:
+			    Color:
+				    rgba: 0,0,0,1
+			    Rectangle:
+				    pos: self.pos
+				    size: self.size
+            size_hint: (0.3,0.3)
             Label:
                 text: "User Name"
+		        pos_hint: {"x": 0.05, 'y':0.5}
+		        size_hint: (0.35, 0.2)
             TextInput:
                 id: username
+		        pos_hint: {"x": 0.5, 'y':0.4}
+		        size_hint: (0.35, 0.1)
             Label:
                 text: "Password"
+		        pos_hint: {"x": 0.05, 'y':0.15}
+		        size_hint: (0.35, 0.2)
             TextInput:
                 id: password
                 password: True
-        Button:
-            text: "Login"
-        Button:
-            text: "Disconnect"
+		        pos_hint: {"x": 0.5, 'y':0.15}
+		        size_hint: (0.35, 0.1)
+
+		    Button:
+		        text: "Cancel"
+		        pos_hint: {"x": 0.6, 'y':0.0}
+		        size_hint: (0.15, 0.1)
+		    Button:
+		        text: "Connect"
+		        pos_hint: {"x": 0.8, 'y':0.0}
+		        size_hint: (0.15, 0.1)
+		        on_release: root.connect()
