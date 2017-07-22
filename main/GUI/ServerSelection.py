@@ -4,6 +4,8 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen
+
+from main.GUI import SpecialPopups
 from main.GUI.ServerListener import ThreadedClient
 import kivy
 
@@ -66,8 +68,12 @@ class Server(FloatLayout):
         self.name_label.bind(size=self.name_label.setter("text_size"))
 
     def connect(self):
-        ipdata = self.ip.split(":")
-        App.get_running_app().sm.switch_to(LoginScreen(ipdata[0], ipdata[1], name="LoginScreen"))
+        try:
+            ipdata = self.ip.split(":")
+            App.get_running_app().sm.switch_to(LoginScreen(ipdata[0], ipdata[1], name="LoginScreen"))
+        except:
+            SpecialPopups.get_text_popup("The ip selected is not valid", 500, 500).open()
+
 
 class AddServerPopup(Popup):
     #cause fuck logic right?

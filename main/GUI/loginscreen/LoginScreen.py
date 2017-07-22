@@ -1,6 +1,10 @@
 from kivy.app import App
+from kivy.core.text import Label
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen
 import paho.mqtt.client as mqtt
+from main.GUI import SpecialPopups
 
 from main.GUI.loading.Initializer import LoadingScreen
 
@@ -18,17 +22,21 @@ class LoginScreen(Screen):
         mqttc = mqtt.Client()
         mqttc.on_connect = self.on_connect
         mqttc.on_message = self.on_message
-        mqttc.username_pw_set(username, password)
-        mqttc.connect(self.ip, 1883, 60)
-        mqttc.loop_start()
-        App.get_running_app().sm.switch_to(LoadingScreen(name="loading"))
+        try:
+            mqttc.username_pw_set(username, password)
+            mqttc.connect(self.ip, 1883, 60)
+            mqttc.loop_start()
+            App.get_running_app().sm.switch_to(LoadingScreen(name="loading"))
+        except:
+            SpecialPopups.get_text_popup("Couldn't connect to the server!", 500, 500).open()
 
     def on_connect(self, client,  userdata, flags, rc):
         print("Connected with result code " + str(rc))
-
         # Subscribing in on_connect() means that if we lose the connection and
         # reconnect then subscriptions will be renewed.
         client.subscribe("$SYS/#")
 
     def on_message(self, client, userdata, msg):
         print("Message: "+msg.topic + " " + str(msg.payload))
+
+
