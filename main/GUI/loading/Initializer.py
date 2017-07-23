@@ -31,12 +31,14 @@ kivy.require('1.9.2') #uses current kivy version.
 modules = [] #Holds all module names. No need for a whole module storage.
 class LoadingScreen(Screen):
     #Constructor to keep the screenmanager object
-    def __init__(self, **kwargs):
+    def __init__(self, client, **kwargs):
         super(LoadingScreen, self).__init__(**kwargs)
+        self.client = client
 
     #Triggers when this Screen is entered.
     def on_enter(self):
         self.load_modules()
+        self.setup()
         
         treeLabel = Label(text="Tree", opacity=0, center_y=10, font_size = "180sp")
         self.add_widget(treeLabel)
@@ -50,7 +52,7 @@ class LoadingScreen(Screen):
 
     #After another 4 seconds this is called to jump into the menu screen.
     def screen_callback(self, dt):
-        menu = MainMenuScreen(modules, name="menu")
+        menu = MainMenuScreen(client=self.client, modules=modules, name="menu")
         Module.menu_screen = menu
         App.get_running_app().sm.switch_to(menu, transition=FadeTransition())
     
@@ -84,3 +86,7 @@ class LoadingScreen(Screen):
             except IndexError:
                 pass
         return module
+
+
+    def setup(self):
+        self.client.suscribe("manager/bluetooth/devices")
