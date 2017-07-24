@@ -89,4 +89,4 @@ class LoadingScreen(Screen):
 
 
     def setup(self):
-        self.client.suscribe("manager/bluetooth/devices")
+        self.client.subscribe("manager/bluetooth/devices")

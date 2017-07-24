@@ -1,5 +1,5 @@
 from kivy.uix.screenmanager import Screen
-
+from main.MQTTListener import MQTTManager
 
 class LoginScreen(Screen):
     def __init__(self, ip, port, **kwargs):
@@ -11,5 +11,7 @@ class LoginScreen(Screen):
         username = self.ids["username"].text
         password = self.ids["password"].text
         print("Connecting to: ", self.ip, "with username: ", username, " and password ", password)
+        m = MQTTManager(self.ip, self.port)
+        m.setup()
 
 

@@ -2,12 +2,14 @@ import paho.mqtt.client as mqtt
 from kivy.app import App
 from main.GUI import SpecialPopups
 from main.GUI.loading.Initializer import LoadingScreen
+from main.modules.CommandManager import CommandManager
 
 
 class MQTTManager:
-    def __init__(self):
-
-        pass
+    def __init__(self, ip, port):
+        self.ip = ip
+        self.port = port
+        MQTTManager.cm = CommandManager()
 
     def setup(self):
         mqttc = mqtt.Client()
@@ -30,4 +32,6 @@ class MQTTManager:
         client.subscribe("main/tatanroom/lights")
 
     def on_message(self, client, userdata, msg):
-        print("Message recieved: "+msg.topic + " " + str(msg.payload))
+        topic = msg.topic
+        payload = msg.payload
+        MQTTManager.cm.parse(topic=topic, payload=payload)
