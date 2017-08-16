@@ -13,3 +13,6 @@ class CommandManager:
         if(topic=="manager/bluetooth/devices"):
             AddPopup.devices.append(str(payload.decode()))
             self.store.update()
+        elif(topic=="manager/bluetooth/devices"):
+            AddPopup.devices.append(str(payload.decode()))
+            self.store.update()
