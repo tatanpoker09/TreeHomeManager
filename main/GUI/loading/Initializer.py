@@ -89,4 +89,5 @@ class LoadingScreen(Screen):
 
 
     def setup(self):
-        self.client.subscribe("manager/bluetooth/devices")
+        self.client.subscribe("server/peripheral/bluetooth/devices")
+        self.client.subscribe("server/modules/lights/retrieve_callback")

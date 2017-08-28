@@ -10,9 +10,8 @@ class CommandManager:
 
     def parse(self, topic, payload):
         print(topic, payload)
-        if(topic=="manager/bluetooth/devices"):
+        if(topic=="server/peripheral/bluetooth/devices"):
             AddPopup.devices.append(str(payload.decode()))
             self.store.update()
-        elif(topic=="manager/bluetooth/devices"):
-            AddPopup.devices.append(str(payload.decode()))
-            self.store.update()
+        elif(topic=="server/modules/lights/retrieve_callback"):
+            self.store.add_section_payload(str(payload.decode()))
