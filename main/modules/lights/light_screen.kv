@@ -1,0 +1,72 @@
+#:import LightButton modules.lights.light_widgets
+#:import LightSection modules.lights.light_widgets
+
+<Button>:
+    font_size: 20
+<LightSection>
+	section_name: "Default"
+	canvas.before:
+		Color:
+			rgba: 0,0,1,1
+		Rectangle:
+			pos: self.pos
+			size: self.size
+	
+<LightScreen>
+	FloatLayout:
+		id: toolbar
+		size_hint: (1,0.1)
+		pos_hint: {"x": 0, 'y':0.9}
+		canvas:
+			Color:
+				rgba: 0,1,1,1
+			Rectangle:
+				pos: self.pos
+				size: self.size
+		Button:
+			text: "Home"
+			pos_hint: {"x": 0, 'y':0}
+			size_hint: (0.1,1)
+			on_release: root.manager.current = "menu"
+		Button:
+			text: "Add"
+			pos_hint: {"x": 0.85, 'y':0}
+			size_hint: (0.15,1)
+			on_press: root.add_popup()
+	FloatLayout:
+		size_hint: 1, 0.8
+		pos_hint: {"x": 0, 'y':0.1}
+		id: body
+		canvas.before:
+			Color:
+				rgba: 1,0,1,1
+			Rectangle:
+				pos: self.pos
+				size: self.size
+		
+		ScrollView:
+			viewport_size: body.size
+			pos_hint: {"x": 0, 'y':0}
+			GridLayout:
+				padding: 20
+				cols: 1
+				id: scrollbody
+				spacing:10
+				size_hint: 1, None
+				height: self.minimum_height
+	FloatLayout:
+		id: foot
+		size_hint: (1.0,0.1)
+		pos_hint: {"x": 0, 'y':0}
+		canvas:
+			Color:
+				rgba: 1,1,0,1
+			Rectangle:
+				pos: self.pos
+				size: self.size
+		Button:
+			text: "Back"
+			pos_hint: {"x": 0.8, 'y':0}
+			size_hint: (0.2, 1.0)
+			on_release: root.manager.current = "menu"
+			values: ("1","2")
