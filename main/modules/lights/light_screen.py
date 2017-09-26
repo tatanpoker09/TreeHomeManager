@@ -30,8 +30,8 @@ class LightScreen(Module):
         device = popup.spinner.text
         argument = popup.argumentinput.text
         permission = 5
-        self.add_section(name, permission, "Off")
-        MainMenuScreen.client.publish("server/modules/lights/create", name+","+device+","+str(permission)+str(argument))
+        MQTTManager.cm.varStore(self)
+        MainMenuScreen.client.publish("server/modules/lights/create", name+","+device+","+str(permission)+","+str(argument))
 
     def add_section(self, name, permission, status):
         section = LightSection(section_name=name, status=status)
@@ -45,5 +45,6 @@ class LightScreen(Module):
 
     def on_enter(self, *args):
         self.sections.clear()
+        self.ids.scrollbody.clear_widgets()
         MQTTManager.cm.varStore(self)
         MainMenuScreen.client.publish("server/modules/lights/retrieve", "")
