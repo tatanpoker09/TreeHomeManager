@@ -1,0 +1,41 @@
+<RandomNumber>
+    FloatLayout:
+        Label:
+            text: "From"
+            pos_hint: {"x": 0.25, 'y':0.23}
+            size_hint: (0.15, 0.1)
+            font_size: "25sp"
+        Label:
+            text: "To"
+            pos_hint: {"x": 0.55, 'y':0.23}
+            size_hint: (0.15, 0.1)
+            font_size: "25sp"
+        TextInput:
+            pos_hint: {"x": 0.3, 'y':0.15}
+            size_hint: (0.15, 0.1)
+            text: "0"
+            font_size: "30sp"
+            id: numberfrom
+        TextInput:
+            pos_hint: {"x": 0.6, 'y':0.15}
+            size_hint: (0.15, 0.1)
+            text: "100"
+            font_size: "30sp"
+            id: numberto
+        Button:
+            text: "Generate"
+            pos_hint: {"x": 0.35, 'y':0.5}
+            size_hint: (0.3, 0.2)
+            on_press: root.generate_random()
+        Label:
+            id: number
+            text: "0"
+            font_size: "50sp"
+            pos_hint: {"x":0.35, "y":0.7}
+            size_hint: (0.3, 0.2)
+        Button:
+            text: "Back"
+            pos_hint: {"x":0.8, "y":0.8}
+            size_hint: (0.2, 0.15)
+			on_release: root.manager.current = "menu"
+			halign: "left"

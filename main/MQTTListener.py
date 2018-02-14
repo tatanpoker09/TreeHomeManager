@@ -1,5 +1,6 @@
 import paho.mqtt.client as mqtt
 from kivy.app import App
+
 from main.GUI import SpecialPopups
 from main.GUI.loading.Initializer import LoadingScreen
 from main.modules.CommandManager import CommandManager
@@ -21,9 +22,11 @@ class MQTTManager:
             App.get_running_app().sm.switch_to(LoadingScreen(name="loading", client=mqttc))
         except Exception as e:
             print(e)
-            SpecialPopups.get_text_popup("Couldn't connect to the server!", 500, 500).open()
+            SpecialPopups.get_text_popup("Couldn't connect to the server!", 500, 500, "Server Connection Error", True).open()
             return
 
+    def setup_bypass(self):
+            App.get_running_app().sm.switch_to(LoadingScreen(name="loading", client=mqtt.Client()))
 
     def on_connect(self, client,  userdata, flags, rc):
         print("Connected with result code " + str(rc))

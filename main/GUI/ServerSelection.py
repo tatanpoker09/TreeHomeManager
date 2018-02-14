@@ -1,3 +1,4 @@
+import kivy
 from kivy.app import App
 from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
@@ -6,10 +7,8 @@ from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen
 
 from main.GUI import SpecialPopups
-from main.GUI.ServerListener import ThreadedClient
-import kivy
-
 from main.GUI.loginscreen.LoginScreen import LoginScreen
+from main.MQTTListener import MQTTManager
 
 kivy.require('1.9.2')  # uses current kivy version.s
 
@@ -82,6 +81,8 @@ class AddServerPopup(Popup):
 
     def ping_server(self):
         print("Ping")
+        m = MQTTManager("","")
+        m.setup_bypass()
 
     def create_server(self):
         name = self.ids.servername.text

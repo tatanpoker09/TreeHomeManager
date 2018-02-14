@@ -1,17 +1,17 @@
 #Loads modules
-import asyncio  # Multithreading
+import importlib
 import inspect
 import os  # we need it to load modules
-from pydoc import locate
 import sys
-import importlib
+from pydoc import locate
 
 import kivy
 from kivy.animation import Animation
 from kivy.app import App
 from kivy.clock import Clock
+from kivy.lang import Builder
 from kivy.uix.label import Label
-from kivy.uix.screenmanager import ScreenManager, FadeTransition, Screen
+from kivy.uix.screenmanager import FadeTransition, Screen
 
 from main.GUI.mainmenu.MainMenu import MainMenuScreen
 from main.modules.module import Module
@@ -21,6 +21,7 @@ sys.path.append('/usr/lib/python3.4')
 
 
 kivy.require('1.9.2') #uses current kivy version.
+Builder.load_file("GUI/widgets/widgets.kv")
 
 
 

@@ -14,11 +14,11 @@ from kivy.uix.spinner import Spinner
 from kivy.uix.textinput import TextInput
 
 from main.GUI.mainmenu.MainMenu import MainMenuScreen
+from main.GUI.widgets.ButtonImage import ButtonImage
 
 
 class LightButton(ButtonBehavior, Image):
     pass
-        
         
 class LightSection(FloatLayout):
     def __init__(self, **kwargs):
@@ -31,7 +31,7 @@ class LightSection(FloatLayout):
         
         self.size_hint = (0.8,None)
         self.size = (1000, 70)
-        self.status_button = LightButton(size_hint= (0.1,1), pos_hint = {"x": 0, 'y':0}, on_press=self.change_status, source="../resources/Lights"+self.status+".png")
+        self.status_button = ButtonImage(size_hint= (0.1,1), pos_hint = {"x": 0, 'y':0}, on_press=self.change_status, source="../resources/Lights"+self.status+".png")
         self.name_label = Label(size_hint = (0.5, 1.0), pos_hint = {"x": 0.1, 'y':0}, font_size=30, halign="left", valign="middle")
         self.status_label = Label(size_hint = (0.3, 1.0), pos_hint = {"x": 0.6, 'y':0}, text=self.status, font_size=30, text_size = self.size, halign="left", valign="middle")
         self.config_button = Button(size_hint= (0.1,1), pos_hint = {"x": 0.9, 'y':0}, text="Config", font_size=30, on_press=self.config)
