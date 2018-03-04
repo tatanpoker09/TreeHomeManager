@@ -83,6 +83,7 @@ class AddServerPopup(Popup):
         print("Ping")
         m = MQTTManager("","")
         m.setup_bypass()
+        self.dismiss()
 
     def create_server(self):
         name = self.ids.servername.text
